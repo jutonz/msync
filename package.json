@@ -1,0 +1,31 @@
+{
+  "name": "msync",
+  "version": "0.0.0",
+  "description": "Enables automatic transfer of medifiles between computers",
+  "main": "server.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "chai": "^3.0.0",
+    "express": "^4.12.4"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jutonz/msync.git"
+  },
+  "author": "Justin Toniazzo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jutonz/msync/issues"
+  },
+  "homepage": "https://github.com/jutonz/msync#readme"
+}
