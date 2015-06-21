@@ -10,7 +10,9 @@
   "dependencies": {
     "body-parser": "^1.13.1",
     "chai": "^3.0.0",
-    "express": "^4.12.4"
+    "connect-busboy": "0.0.2",
+    "express": "^4.12.4",
+    "fs-extra": "^0.20.0"
   },
   "devDependencies": {
     "mocha": "^2.2.5"
