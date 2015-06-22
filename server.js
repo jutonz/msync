@@ -16,8 +16,7 @@ router.get('/', function(req, res) {
   res.json({ message: 'welcome to ze api' });
 });
 
-// Change to /files
-router.post('/upload', function(req, res) {
+router.post('/files', function(req, res) {
   var fstream;
   req.pipe(req.busboy);
   req.busboy.on('file', function(fieldname, file, filename) {
@@ -44,5 +43,6 @@ app.use('/api', router);
 
 var server = app.listen(port);
 console.log('Server started on', port);
+
 
 module.exports = server;
