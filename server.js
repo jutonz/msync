@@ -7,7 +7,6 @@ var app        = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(busboy());
-// app.use(express.static(path.join(__dirname, 'public')));
 
 var port = process.env.MSYNC_PORT || 8000;
 
@@ -17,6 +16,7 @@ router.get('/', function(req, res) {
   res.json({ message: 'welcome to ze api' });
 });
 
+// Change to /files
 router.post('/upload', function(req, res) {
   var fstream;
   req.pipe(req.busboy);
@@ -33,7 +33,16 @@ router.post('/upload', function(req, res) {
   });
 });
 
+router.get('/files', function(req, res) {
+  fs.readdir(__dirname + '/uploaded/', function(err, files) {
+    if (err) throw err;
+    res.send(files);
+  });  
+});
+
 app.use('/api', router);
 
-app.listen(port);
+var server = app.listen(port);
 console.log('Server started on', port);
+
+module.exports = server;

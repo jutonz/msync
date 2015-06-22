@@ -12,10 +12,13 @@
     "chai": "^3.0.0",
     "connect-busboy": "0.0.2",
     "express": "^4.12.4",
-    "fs-extra": "^0.20.0"
+    "fs-extra": "^0.20.0",
+    "node-rest-client": "^1.5.1"
   },
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "really-need": "^1.6.3",
+    "supertest": "^1.0.1"
   },
   "scripts": {
     "test": "mocha"
