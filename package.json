@@ -18,7 +18,8 @@
   "devDependencies": {
     "mocha": "^2.2.5",
     "really-need": "^1.6.3",
-    "supertest": "^1.0.1"
+    "supertest": "^1.0.1",
+    "tmp": "0.0.26"
   },
   "scripts": {
     "test": "mocha"

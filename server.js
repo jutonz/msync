@@ -2,6 +2,7 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var busboy     = require('connect-busboy');
 var fs         = require('fs-extra');
+var path       = require('path');
 var app        = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,9 +35,29 @@ router.post('/files', function(req, res) {
 
 router.get('/files', function(req, res) {
   fs.readdir(__dirname + '/uploaded/', function(err, files) {
-    if (err) throw err;
+    res.status(200);
     res.send(files);
   });  
+});
+
+router.get('/files/:name', function(req, res) {
+  var options = {
+    root: __dirname + '/uploaded/'
+  , dotfiles: 'allow'
+  , headers: {
+      'x-timestamp': Date.now()
+    , 'x-sent': true 
+    }
+  };
+  var filename = req.params.name;
+  res.sendFile(filename, options, function(err) {
+    if (err) {
+      console.log(err);
+      res.status(err.status).end();
+    } else {
+      console.log('Sent:', filename);
+    }
+  });
 });
 
 app.use('/api', router);
