@@ -35,15 +35,13 @@ router.post('/files', function(req, res) {
 
 router.get('/files', function(req, res) {
   fs.readdir(__dirname + '/uploaded/', function(err, files) {
-    var json = JSON.stringify({
-      array: files
-    });
     res.status(200);
     res.json({ array: files });
   });  
 });
 
 router.get('/files/:name', function(req, res) {
+  console.log('Received GET /files/' + req.params.name);
   var options = {
     root: __dirname + '/uploaded/'
   , dotfiles: 'allow'
