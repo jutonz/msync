@@ -1,6 +1,7 @@
 var request = require('supertest');
 var tmp     = require('tmp');
 var fs      = require('fs');
+require     = require('really-need');
 
 function binaryParser(response, callback) {
   response.setEncoding('binary');
@@ -17,7 +18,9 @@ function binaryParser(response, callback) {
 describe('loading express', function() {
   var server;
   beforeEach(function() {
-    server = require('./../server');
+    // Use really-need to reset the cache after each test, 
+    // forcing the server to be reloaded and ensuring a clean slate.
+    server = require('./../server', { bustCache: true });
   });
 
   afterEach(function() {

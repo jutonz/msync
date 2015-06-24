@@ -10,6 +10,7 @@
   "dependencies": {
     "body-parser": "^1.13.1",
     "chai": "^3.0.0",
+    "commander": "^2.8.1",
     "connect-busboy": "0.0.2",
     "express": "^4.12.4",
     "fs-extra": "^0.20.0",
