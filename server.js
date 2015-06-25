@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var busboy     = require('connect-busboy');
 var fs         = require('fs-extra');
 var path       = require('path');
+var kue        = require('kue');
 var app        = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,6 +13,13 @@ app.use(busboy());
 var port = process.env.MSYNC_PORT || 8000;
 
 var router = express.Router();
+
+var downloads = kue.createQueue();
+
+function newDownload(filename) {
+  var download = downloads.create(filename);
+  download.save();
+};
 
 router.get('/', function(req, res) {
   res.json({ message: 'welcome to ze api' });
@@ -51,6 +59,11 @@ router.get('/files/:name', function(req, res) {
     }
   };
   var filename = req.params.name;
+  newDownload(filename);
+  downloads.process(filename, function(job, done) {
+    console.log('Sent:', filename);
+    done && done();
+  });
   res.sendFile(filename, options, function(err) {
     if (err) {
       console.log(err);
